@@ -185,4 +185,19 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
+.modifier{
+	display:flex;
+	justify-content: center;
+	align-items: baseline;
+	gap:20px;
+}
 
+.modifier button{
+	background-color: transparent;
+	border: 2px solid transparent;
+	padding: 0;
+}
+
+.image-edit{
+	margin-right: 10px;
+}

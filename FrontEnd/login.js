@@ -1,9 +1,16 @@
 export async function loginUser(email, password){
     try {
-        const reponse=await axios.post("http://localhost:5678/api/users/login",{email, password});
+        const reponse=await fetch("http://localhost:5678/api/users/login",{
+            method: "POST", 
+            headers: {
+                "Content-Type": "application/json",
+              },
+            body: JSON.stringify({email: email, password: password}),
+        });
+        console.log(reponse)
         if(reponse.status===200){
-            console.log(reponse.data);
-            return reponse.data;
+            console.log(reponse.json());
+            return reponse.json();
         }
         else{
             console.log("erreur");
@@ -26,8 +33,8 @@ loginForm.addEventListener("submit",async (e)=>{
     let valeuremail=email.value;
     let valeurpassword=password.value;
     try {
-        const {userId, token}=await loginUser(valeuremail, valeurpassword);
-        localStorage.setItem("tokenvalue", token);
+        const resultat =await loginUser(valeuremail, valeurpassword);
+        localStorage.setItem("tokenvalue", resultat.token);
         window.location.replace("index.html");
     }
         
@@ -36,3 +43,5 @@ loginForm.addEventListener("submit",async (e)=>{
         
     }
 })
+
+

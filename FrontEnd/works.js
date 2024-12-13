@@ -1,7 +1,7 @@
 try {
-    const reponse=await axios.get("http://localhost:5678/api/works");
+    const reponse=await fetch("http://localhost:5678/api/works");
     if(reponse.status===200){
-        let works=reponse.data;
+        works=reponse.data;
         console.log(reponse.data);
         let gallery=document.getElementById("gallery");
 gallery.innerHTML=works.map(
