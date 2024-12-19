@@ -1,30 +1,7 @@
-export async function loginUser(email, password){
-    try {
-        const reponse=await fetch("http://localhost:5678/api/users/login",{
-            method: "POST", 
-            headers: {
-                "Content-Type": "application/json",
-              },
-            body: JSON.stringify({email: email, password: password}),
-        });
-        console.log(reponse)
-        if(reponse.status===200){
-            console.log(reponse.json());
-            return reponse.json();
-        }
-        else{
-            console.log("erreur");
-            return 0;
-        }
-        
-        
-    } catch (error) {
-        console.log("erreur du serveur");
-        
-    }
-}
+
 
 let loginForm=document.getElementById("login-formulaire");
+
 loginForm.addEventListener("submit",async (e)=>{
     e.preventDefault();
 
@@ -32,10 +9,31 @@ loginForm.addEventListener("submit",async (e)=>{
     let password=document.getElementById("password");
     let valeuremail=email.value;
     let valeurpassword=password.value;
+
     try {
-        const resultat =await loginUser(valeuremail, valeurpassword);
-        localStorage.setItem("tokenvalue", resultat.token);
-        window.location.replace("index.html");
+        // const resultat = await loginUser(valeuremail, valeurpassword);
+
+        const reponse = await fetch("http://localhost:5678/api/users/login",{
+            method: "POST", 
+            headers: {
+                "Content-Type": "application/json",
+              },
+            body: JSON.stringify({email: valeuremail, password: valeurpassword}),
+        });
+
+        const data = await reponse.json();
+
+        if(reponse.status == 200){
+
+            localStorage.setItem("tokenvalue", data.token);
+            window.location.replace("mode-edit.html");
+            console.log(data);
+        }
+
+        else{
+            console.log("erreur");
+        }
+
     }
         
     catch (error) {

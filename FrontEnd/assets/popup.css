@@ -1,0 +1,160 @@
+
+#popup{
+    display: none;
+    background-color: #6f6f6f82;
+    justify-content: center;
+
+    position: absolute;
+    width: 100%;
+    height: 3600px;
+    left: 0;
+    top: 0;
+
+    padding: 20px;
+    margin: 0;
+}
+
+.contenu-popup{
+    
+    background-color: white;
+    width: 740px;
+    height: 727px;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    margin-top: 33%;
+}
+
+
+
+#croix{
+    font-size: 30px;
+    font-family: 'Work Sans';
+    float: right;
+}
+
+#fleche{
+    float: left;
+    display: none;
+}
+
+
+.croix-button button{
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+
+.corps-popup{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    margin: 5%;
+    gap: 20px;
+}
+
+.corps-popup2{
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    margin: 5%;
+    gap: 20px;
+}
+
+.contenu-popup h3{
+    font-size: 30px;
+}
+
+.list-photos{
+    margin-top: 7%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    row-gap:25px;
+    column-gap:10px;
+    margin-bottom: 20px;
+}
+
+.ajouter hr{
+    margin-top: 20px;
+}
+
+.ajouter{
+    width: 80%;
+}
+
+.ajouter button{
+    height: 50px;
+    font-size: 1.2em;
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    font-family: 'Syne';
+    font-weight: 700;
+    color: white;
+    background-color: #1D6154;
+    margin: 2em auto;
+    width: 200px;
+    text-align: center;
+    border-radius: 60px;
+    margin-left: 30%;
+}
+
+.corbeille-img{
+    padding: 4px;
+    background-color: black;
+    position: absolute;
+    display: flex;
+    border-radius: 3px;
+    margin-top: 5px;
+    margin-left: 67px;
+}
+
+input[type="file"]{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-image-difficile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #e7f1f6;
+    padding: 15px;
+    width: 92%;
+    border-radius: 5px;
+    gap: 15px;
+}
+
+.input-image-difficile button{
+    padding: 20px;
+    background-color: #cbd6dc;
+    color: #306685;
+    border: none;
+    border-radius: 33px;
+    width: 42%;
+    font-size: 20px;
+    font-family: 'Work sans';
+}
+#file{
+    position: absolute;
+    color: transparent;
+    background-color: transparent;
+    top: 21%;
+}
+
+input[type="file"]::file-selector-button{
+    background-color:transparent;
+    color: transparent;
+    border: none;
+    width: 300px;
+    height: 200px;
+}
+
+
+
+

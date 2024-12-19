@@ -1,0 +1,11 @@
+la methode du formulaire = post car on veut ajouter un élément à la base de donnée
+enctype="multipart/form-data" : ajouter au formulaire quand on a un input de type file en l'occurance ici une image
+
+<input type="file" name="image" id="file"> Il ets difficile d'accéder et de modifier les differents éléments 
+de cet input file qui ne constitue pas un bouton c'est pour cela qu on a cree un autre <bouton> avec style css
+et on l'a modifié pour rendu comme la maquette. 
+
+Pour l'input file on lui a donné des couleurs transparentes pour le cacher mais il existe toujours et on lui a donné 
+une position absolute (l'élément flotte) puisque le input file vient après le boutton créé on a fait monter le input 
+vers le bouton créé. et on a agrandit le input file si l'utilisateur clique au bord du bouton l'input sera toujours
+clickable. Il y a t-il une méthode plus simple.

@@ -9,16 +9,25 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
+	<link rel="stylesheet" href="./assets/popup.css">
+	<script src="scripts.js"></script>
+
 </head>
 <body>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
-			<li>projets</li>
-			<li>contact</li>
-			<li><a href="login.html">login </a></li>
-			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+			<li>
+				<a href="#portfolio">projets</a>
+			</li>
+			<li>
+				<a href="#contact">contact</a>
+			</li>
+			<li>
+				<a href="login.html">login </a>
+			</li>
+			<li> <img src="./assets/icons/instagram.png" alt="Instagram"> </li>
 		</ul>
 	</nav>
 </header>
@@ -34,14 +43,19 @@
 			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
 		</article>
 	</section>
+
 	<section id="portfolio">
 		<div class="modifier">
 			<h2>Mes Projets</h2>
-			<button> <img class="image-edit" width="17" height="17" src="https://img.icons8.com/pastel-glyph/64/create-new--v2.png" alt="create-new--v2"/>modifier</button>
+            <div class="categories-buttons" id="categoriess">
+                <button onclick="afficherWorkParCategorie(0)">Tous</button>
+            </div>
 		</div>	
-		<div class="gallery" id="gallery">
+
+		<div class="gallery" id="galleryy">
 		
 		</div>
+		
 	</section>
 	<section id="contact">
 		<h2>Contact</h2>
@@ -65,8 +79,12 @@
 		</ul>
 	</nav>
 </footer>
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script type="module" src="works.js"></script>
+<script type="module" src="popup.js"></script>
+<script type="module" src="categories.js"></script>
+
 </body>
 </html>
 

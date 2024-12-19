@@ -1,15 +1,18 @@
+
 try {
-    const reponse=await fetch("http://localhost:5678/api/works");
+
+    const reponse = await fetch("http://localhost:5678/api/works");
+    const data = await reponse.json();
+    
     if(reponse.status===200){
-        works=reponse.data;
-        console.log(reponse.data);
+        const works = data;
         let gallery=document.getElementById("gallery");
-gallery.innerHTML=works.map(
+        gallery.innerHTML=works.map(
     (work)=>`
         <figure>
-				<img src="${work.imageUrl}" alt="${work.title}">
-				<figcaption>${work.title}</figcaption>
-			</figure>`
+            <img src="${work.imageUrl}" alt="${work.title}">
+            <figcaption>${work.title}</figcaption>
+        </figure>`
     )
     .join('');
     }
@@ -23,4 +26,7 @@ gallery.innerHTML=works.map(
     console.log("erreur du serveur");
     
 }
+
+
+
 
