@@ -1,31 +1,54 @@
 
+export async function getAllWorks() {
+
+    try {
+        const reponse = await fetch("http://localhost:5678/api/works");
+        const data = await reponse.json();
+            
+        if(reponse.status===200){
+            return data;
+        } 
+    }
+    catch (error) {
+        return "error";
+    }
+}
+
+export let listeWorks = await getAllWorks();
+            
 try {
 
-    const reponse = await fetch("http://localhost:5678/api/works");
-    const data = await reponse.json();
+    let galleryy = document.getElementById("galleryy");
     
-    if(reponse.status===200){
-        const works = data;
-        let gallery=document.getElementById("gallery");
-        gallery.innerHTML=works.map(
+    galleryy.innerHTML = listeWorks.map(
+        (work)=>`
+            <figure>
+                <img width="170" height="530" src="${work.imageUrl}" alt="${work.title}">
+                <figcaption>${work.title}</figcaption>
+            </figure>`
+    )
+    .join('');
+
+    let gallery=document.getElementById("gallery");
+    gallery.innerHTML=listeWorks.map(
     (work)=>`
         <figure>
-            <img src="${work.imageUrl}" alt="${work.title}">
+            <img width="170" height="300" src="${work.imageUrl}" alt="${work.title}">
             <figcaption>${work.title}</figcaption>
         </figure>`
     )
     .join('');
-    }
-    else{
-        console.log("erreur");
-        
-    }
-    
+
     
 } catch (error) {
     console.log("erreur du serveur");
     
 }
+
+
+
+
+
 
 
 

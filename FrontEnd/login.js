@@ -11,7 +11,6 @@ loginForm.addEventListener("submit",async (e)=>{
     let valeurpassword=password.value;
 
     try {
-        // const resultat = await loginUser(valeuremail, valeurpassword);
 
         const reponse = await fetch("http://localhost:5678/api/users/login",{
             method: "POST", 
@@ -26,8 +25,7 @@ loginForm.addEventListener("submit",async (e)=>{
         if(reponse.status == 200){
 
             localStorage.setItem("tokenvalue", data.token);
-            window.location.replace("mode-edit.html");
-            console.log(data);
+            window.location.replace("accueil.html");            
         }
 
         else{
