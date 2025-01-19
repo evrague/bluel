@@ -1,4 +1,4 @@
-import { listeWorks } from "./works.js";
+import { listeWorks, getAllWorks } from "./works.js"; // Ajout de l'import getAllWorks
 
 let btn_add_work = document.getElementById("button-add-work");
 let categs = document.getElementById("categories");
@@ -7,21 +7,17 @@ let new_work_form = document.getElementById("formm");
 rafraichirDonnees();          
 
 function rafraichirDonnees() {
-
     const gallery = document.getElementById("gallery");
     gallery.innerHTML = listeWorks.map(
-        (work) => `
-        
-            <figure>
-                <img width="170" height="530" src="${work.imageUrl}" alt="${work.title}">
-                <figcaption>${work.title}</figcaption>
-            </figure>`
+        (work) => `<figure>
+                    <img width="170" height="530" src="${work.imageUrl}" alt="${work.title}">
+                    <figcaption>${work.title}</figcaption>
+                </figure>`
     ).join('');
 
     const list_photos = document.getElementById("list-photos");
     list_photos.innerHTML = listeWorks.map(
-        (work) => `
-            <figure id="button-corbeille">
+        (work) => `<figure id="button-corbeille">
                 <div class="corbeille-img" onclick="recupererIdWork(${work.id})">
                     <img width="12" height="12" src="https://img.icons8.com/metro/26/FFFFFF/trash.png" alt="trash"/>
                 </div>
@@ -45,64 +41,45 @@ function cacherModale(){
 }
 
 new_work_form.addEventListener("change",() => {
-    // Récupération des éléments du formulaire
-    let image = document.getElementById("file").files[0]; // Récupère le fichier (image)
-    let titre = document.getElementById("titre").value; // Récupère le titre
-    let categorie = document.getElementById("categories").value; // Récupère la catégorie
+    let image = document.getElementById("file").files[0];
+    let titre = document.getElementById("titre").value;
+    let categorie = document.getElementById("categories").value;
 
-    console.log(titre);
-
-    if (image != undefined && ( titre != "" && titre != undefined ) && categorie != "default"){
-        
+    if (image != undefined && (titre != "" && titre != undefined) && categorie != "default"){
         btn_add_work.disabled = false;
         btn_add_work.classList.add("button-form-rempli");
-
-    }else{
-        
+    } else {
         btn_add_work.classList.remove("button-form-rempli");
     }
-})
-
+});
 
 new_work_form.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Empêche le rechargement de la page.
+    e.preventDefault();
 
-    // Récupération des éléments du formulaire
-    let image = document.getElementById("file").files[0]; // Récupère le fichier (image)
-    let titre = document.getElementById("titre").value; // Récupère le titre
-    let categorie = document.getElementById("categories").value; // Récupère la catégorie
+    let image = document.getElementById("file").files[0];
+    let titre = document.getElementById("titre").value;
+    let categorie = document.getElementById("categories").value;
 
-
-    // Vérifie que tous les champs sont remplis
-    if (!image || !titre || !categorie) {
-        alert("Veuillez remplir tous les champs !");
-        return;
-    }
-
-    // Récupération du token depuis localStorage
     const token = localStorage.getItem('tokenvalue');
     if (!token) {
         alert("Token non trouvé !");
         return;
     }
 
-    // Préparation des données avec FormData
     const formData = new FormData();
-    formData.append("image", image); // Ajout du fichier image
-    formData.append("title", titre); // Ajout du titre
-    formData.append("category", categorie); // Ajout de la catégorie
+    formData.append("image", image);
+    formData.append("title", titre);
+    formData.append("category", categorie);
 
     try {
-        // Envoi de la requête POST
         const response = await fetch("http://localhost:5678/api/works", {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${token}`, // Ajout du token
+                "Authorization": `Bearer ${token}`,
             },
-            body: formData, // Les données en multipart/form-data
+            body: formData,
         });
 
-        // Gestion de la réponse
         if (response.ok) {
             const data = await response.json();
             console.log("Travail ajouté avec succès :", data);
@@ -110,7 +87,6 @@ new_work_form.addEventListener("submit", async (e) => {
             new_work_form.reset();
 
             let image_a_afficher = document.getElementById("afficher_image");
-
             let cadre = document.getElementById("image_cadre");
             let cssss = document.getElementById("input-image-difficile");
             let disp1 = document.getElementById("disp1");
@@ -123,7 +99,8 @@ new_work_form.addEventListener("submit", async (e) => {
             cssss.classList.remove("padding-0");
             
             cacherModale();
-            getAllWorks(); 
+            listeWorks.push(data)            
+            rafraichirDonnees(); // Rafraîchir l'affichage après la mise à jour des données
 
         } else {
             const errorText = await response.text();
@@ -135,6 +112,3 @@ new_work_form.addEventListener("submit", async (e) => {
         alert("Une erreur est survenue. Veuillez réessayer.");
     }
 });
-
-
-

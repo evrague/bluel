@@ -25,7 +25,7 @@ button_modifier.addEventListener("click", ()=> {
     section_popup.style.display = "flex";
 });
 
-// cacher (fermer) le popup 
+// cacher (fernpmmer) le popup 
 button_croix.addEventListener("click", ()=>{
     section_popup.style.display = "none";
 });

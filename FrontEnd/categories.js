@@ -18,7 +18,7 @@ try {
         buttons_category.innerHTML +=  categories.map(
         (category)=>`
             <button id=button-${category.id} onclick="afficherWorkParCategorie(${category.id})">
-            ${category.name}
+                ${category.name}
             </button>`
         )
         .join('');
@@ -30,4 +30,14 @@ try {
 } catch (error) {
     console.log("erreur du serveur");   
 }
+
+let ab = document.getElementById("fc")
+ab.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    let bc=document.getElementById("c")
+    bc.innerHTML="Votre message a bien été envoyé"
+    ab.reset();
+
+})
+
 

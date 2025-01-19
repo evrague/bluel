@@ -30,6 +30,9 @@ loginForm.addEventListener("submit",async (e)=>{
 
         else{
             console.log("erreur");
+            let p = document.getElementById("zonemessage")
+            p.innerHTML="Identifiants non reconnus"
+
         }
 
     }
